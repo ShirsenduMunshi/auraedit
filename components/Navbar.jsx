@@ -47,36 +47,42 @@ const Navbar = () => {
           </div>
         )}
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center space-x-3">
+        <div className="flex items-center gap-3 ml-10 md:ml-20">
           <Unauthenticated>
             <SignInButton >
-              <Button variant="glassy">Sign In</Button>
+              <Button variant="glassy" className="hidden sm:flex">Sign In</Button>
             </SignInButton>
             <SignUpButton>
               <Button variant="primary">Get Started</Button>
             </SignUpButton>
           </Unauthenticated>
           <Authenticated>
-            <Link className="flex justify-center items-center" href={"/dashboard"}><Button variant={"glassy"} ><LayoutDashboard className="h-4 w-4" />Dashboard</Button></Link>
+            <Link href="/dashboard">
+              <Button variant="glass" className="flex">
+                <LayoutDashboard className="h-4 w-4" />
+                <span className="hidden md:flex cursor-pointer">Dashboard</span>
+              </Button>
+            </Link>
             <UserButton appearance={{
               elements: {
                 userButtonAvatarBox: "w-10 h-10",
                 userButtonAvatarImage: "rounded-full",
               },
             }} />
+            <div className="cursor-pointer"><ModeToggle /></div>
+            <div className="md:hidden">
+              <MobileNavSheet />
+            </div>
           </Authenticated>
-          <ModeToggle />
         </div>
         {isLoading && (
           <div className="fixed bottom-0 left-0 w-full z-40 flex items-center justify-center rounded-3xl">
-            <BarLoader width={"97%"} color="#06b6d4"/>
+            <BarLoader width={"97%"} color="#06b6d4" />
           </div>
         )}
 
         {/* Mobile Menu Trigger */}
-        <div className="md:hidden">
-          <MobileNavSheet />
-        </div>
+
       </nav>
     </header>
   );

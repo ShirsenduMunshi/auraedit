@@ -11,6 +11,9 @@ export default defineSchema({
         projectUsed: v.optional(v.number()), // e.g., 5 current projects
         ExportsThisMonth: v.optional(v.number()), // e.g., 10 total projects allowed
 
+        projectsUsed: v.optional(v.number()),         // ✅ Add this line
+        lastActiveAt: v.optional(v.number()),         // ✅ Add this line
+
         createdAt: v.number(),
         lastActivityAt: v.optional(v.number()), // Timestamp of last activity
     }).index("by_token", ["tokenIdentifier"]),
@@ -31,7 +34,7 @@ export default defineSchema({
         backgroundRemoved: v.optional(v.boolean()), // Whether the background has been removed
 
         folderId: v.optional(v.id("folders")), // Optional folder ID if the project is in a folder
-        
+
         createdAt: v.number(),
         updatedAt: v.optional(v.number()), // Timestamp of last update
     }).index("by_user", ["userId"]).index("by_user_updated", ["userId", "updatedAt"]).index("by_folder", ["folderId"]),
